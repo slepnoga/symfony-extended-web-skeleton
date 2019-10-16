@@ -33,6 +33,32 @@ class User implements UserInterface
      */
     private $password;
 
+
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+
+    private $email;
+
+
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+
+    private $lastLogin;
+
+
+
+
+
+
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -98,6 +124,38 @@ class User implements UserInterface
     }
 
     /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastLogin(): string
+    {
+        return $this->lastLogin;
+    }
+
+    /**
+     * @param string $lastLogin
+     */
+    public function setLastLogin(string $lastLogin): void
+    {
+        $this->lastLogin = $lastLogin;
+    }
+
+    /**
      * @see UserInterface
      */
     public function eraseCredentials()
@@ -105,4 +163,6 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+
 }
