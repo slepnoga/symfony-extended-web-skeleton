@@ -5,6 +5,8 @@ doctrine:
         # use sqlite for SQLite
         driver: 'mysql'
         server_version: '5.7'
+        mapping_types:
+            enum: string
 
         # only needed for MySQL
         charset: utf8mb4
