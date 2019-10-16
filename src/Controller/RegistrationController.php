@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 2019.  Slepnoga.
+ */
 
 namespace App\Controller;
 
@@ -32,11 +35,18 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $user->setEmail($form->get('email')->getData());
+
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
             // do anything else you need here, like send an email
+
+            // Due admin review users, disable automatic login
+            /* and flash to user reg's sucefull
+             *
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
@@ -44,6 +54,8 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
+            */
+            $this->addFlash('succes', 'Registracion succes, please wait');
         }
 
         return $this->render('registration/register.html.twig', [

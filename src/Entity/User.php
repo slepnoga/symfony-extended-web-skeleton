@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 2019.  Slepnoga.
+ */
 
 namespace App\Entity;
 
@@ -34,6 +37,14 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+
+    private $email;
 
 
     /**
@@ -110,6 +121,22 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
     }
 
 }
