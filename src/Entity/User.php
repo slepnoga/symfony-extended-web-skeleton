@@ -51,14 +51,17 @@ class User implements UserInterface
 
     private $lastLogin;
 
+    /**
+     * @var boolean The hashed password
+     * @ORM\Column(type="boolean")
+     */
+
+    private $enabled;
 
 
-
-
-
-
-
-
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -164,5 +167,19 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * @return bool
+     */
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
 
+    /**
+     * @param bool $enabled
+     */
+    public function setEnabled(bool $enabled): void
+    {
+        $this->enabled = $enabled;
+    }
 }
