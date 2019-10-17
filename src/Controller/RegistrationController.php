@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use DateTimeZone;
+Use DateTime;
 
 class RegistrationController extends AbstractController
 {
@@ -36,8 +38,12 @@ class RegistrationController extends AbstractController
             );
 
             $user->setEmail($form->get('email')->getData());
+            $tz_utc=new DateTimeZone('UTC');
+            $time=new DateTime();
+            $time->setTimezone($tz_utc);
 
-
+            $user->setRegisterDate($time);
+            $user->setEnabled(false);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
