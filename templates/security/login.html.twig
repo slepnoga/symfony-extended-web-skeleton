@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
-
+{% block head_css %}
+    {{ encore_entry_css_files('app.scss') }}
+{% endblock %}
+{% block head_js %}
+    {{ encore_entry_js_files('app.js') }}
+{% endblock %}
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
