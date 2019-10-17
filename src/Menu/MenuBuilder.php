@@ -25,7 +25,7 @@ class MenuBuilder
         $menu = $this->factory->createItem('root');
 
         $menu
-            ->addChild('Home', ['route' => 'front_page']);
+            ->addChild('Front Page', ['route' => 'front_page']);
 
         // ... add more children
 
@@ -36,7 +36,8 @@ class MenuBuilder
     {
         $menu = $this->factory->createItem('sidebar');
 
-        $menu->addChild('Home', ['route' => 'app_logout']);
+        $menu->addChild('Logout', ['route' => 'app_logout']);
+        $menu->addChild('Register',['route' => 'app_register'] );
 
         // ... add more children
 

@@ -48,6 +48,14 @@ class User implements UserInterface
 
     private $email;
 
+    /**
+     * @var string The user uuid
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+
+    private $uuid;
 
     /**
      * @var \DateTime The user register time
@@ -187,4 +195,22 @@ class User implements UserInterface
     {
         $this->enabled = $enabled;
     }
+
+    /**
+     * @return string
+     */
+    public function getUuid()
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @param string $uuid
+     */
+    public function setUuid(string $uuid): void
+    {
+        $this->uuid = $uuid;
+    }
+
+
 }
