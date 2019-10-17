@@ -12,8 +12,11 @@ class FrontPageController extends AbstractController
      */
     public function index()
     {
-        return $this->render('front_page/index.html.twig', [
-            'controller_name' => 'FrontPageController',
-        ]);
+        return $this->render(
+            'front_page/index.html.twig',
+            [
+                'controller_name' => 'FrontPageController',
+            ]
+        );
     }
 }

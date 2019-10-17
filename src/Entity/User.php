@@ -32,7 +32,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = ['ROLE_USER'] ;
+    private $roles = ['ROLE_USER'];
 
     /**
      * @var string The hashed password
@@ -61,8 +61,7 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
 
-    private $enabled=false;
-
+    private $enabled = false;
 
 
     /**
@@ -80,7 +79,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return (string)$this->username;
     }
 
     public function setUsername(string $username): self
@@ -114,7 +113,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -188,5 +187,4 @@ class User implements UserInterface
     {
         $this->enabled = $enabled;
     }
-
 }
