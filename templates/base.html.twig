@@ -6,6 +6,8 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+        {{ knp_menu_render('main') }}
+        {{ knp_menu_render('sidebar') }}
     </head>
     <body>
         {% block body %}{% endblock %}
