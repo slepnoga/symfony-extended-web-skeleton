@@ -18,19 +18,14 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
-    /**
-     * One product has many features. This is the inverse side.
-     * @ORM\OneToMany(targetEntity="App\Entity\UserLog", mappedBy="product")
-     */
-    private $features;
-    // ...
 
     public function __construct() {
-        $this->features = new ArrayCollection();
+        $this->username = new ArrayCollection();
     }
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\UserLog", mappedBy="lastLogin")
      *
      */
     private $username;
@@ -78,6 +73,7 @@ class User implements UserInterface
 
         return $this;
     }
+
 
     /**
      * @see UserInterface
@@ -167,37 +163,6 @@ class User implements UserInterface
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|UserLog[]
-     */
-    public function getFeatures(): Collection
-    {
-        return $this->features;
-    }
-
-    public function addFeature(UserLog $feature): self
-    {
-        if (!$this->features->contains($feature)) {
-            $this->features[] = $feature;
-            $feature->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFeature(UserLog $feature): self
-    {
-        if ($this->features->contains($feature)) {
-            $this->features->removeElement($feature);
-            // set the owning side to null (unless already changed)
-            if ($feature->getProduct() === $this) {
-                $feature->setProduct(null);
-            }
-        }
 
         return $this;
     }

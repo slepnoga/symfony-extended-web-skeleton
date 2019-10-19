@@ -22,29 +22,27 @@ class UserLog
 
     /**
      * Many features have one product. This is the owning side.
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="features")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="username")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $product;
+    private $username;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getProduct(): ?User
+    public function getUsername(): ?User
     {
-        return $this->product;
+        return $this->username;
     }
 
-    public function setProduct(?User $product): self
+    public function setUsername(?User $username): self
     {
-        $this->product = $product;
+        $this->username = $username;
 
         return $this;
     }
-
-
 
 
 }
