@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -16,48 +17,38 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+    /**
+     * @ORM\Column(type="datetime", length=180, unique=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\UserLog", mappedBy="username")
+     */
+    private $loginTime;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     *
      */
     private $username;
-
     /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
-
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
 
     private $email;
-
-    /**
-     * @var string The user uuid
-     * @ORM\Column(type="uuid", unique=true)
-     */
-
     /**
      * @var \DateTime The user register time
      * @ORM\Column(type="datetime", options={"default"="1800-01-01 00-00-00"})
      */
 
     private $registerDate;
-
     /**
      * @var boolean User enabled or disabled
      * @ORM\Column(type="boolean")
@@ -65,12 +56,10 @@ class User implements UserInterface
 
     private $enabled = false;
 
-    /**
-     * @var string The user uuid
-     * @ORM\Column(type="uuid")
-     */
-
-    private $uuid;
+    public function __construct()
+    {
+        $this->loginTime = new ArrayCollection();
+    }
 
     /**
      * A visual identifier that represents this user.
@@ -79,7 +68,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return (string)$this->username;
     }
 
     public function setUsername(string $username): self
@@ -113,7 +102,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -140,51 +129,4 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getRegisterDate(): ?\DateTimeInterface
-    {
-        return $this->registerDate;
-    }
-
-    public function setRegisterDate(\DateTimeInterface $registerDate): self
-    {
-        $this->registerDate = $registerDate;
-
-        return $this;
-    }
-
-    public function getEnabled(): ?bool
-    {
-        return $this->enabled;
-    }
-
-    public function setEnabled(bool $enabled): self
-    {
-        $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    public function getUuid()
-    {
-        return $this->uuid;
-    }
-
-    public function setUuid($uuid): self
-    {
-        $this->uuid = $uuid;
-
-        return $this;
-    }
 }

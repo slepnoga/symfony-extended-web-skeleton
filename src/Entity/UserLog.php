@@ -20,81 +20,14 @@ class UserLog
      */
     private $id;
 
-
-
     /**
-     * @var string The user uuid
-     * @ORM\Column(type="uuid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     * @ORM\Column(type="string", length=180)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="loginTime")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
 
-    private $uuid;
-
-    /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime", options={"default"="1800-01-01 00-00-00"})
-     */
-    private $loginTime;
-
-    /**
-     * @var
-     * @ORM\Column(type="ip")
-     *
-     */
-    private $ip;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUuid(): string
-    {
-        return $this->uuid;
-    }
-
-    /**
-     * @param string $uuid
-     */
-    public function setUuid(string $uuid): void
-    {
-        $this->uuid = $uuid;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getLoginTime(): \DateTime
-    {
-        return $this->loginTime;
-    }
-
-    /**
-     * @param \DateTime $loginTime
-     */
-    public function setLoginTime(\DateTime $loginTime): void
-    {
-        $this->loginTime = $loginTime;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIp()
-    {
-        return $this->ip;
-    }
+    private $userName;
 
 
-    /**
-     * @param IPadd $ip
-     */
-    public function setIp(IPadd $ip): void
-    {
-        $this->ip = $ip;
-    }
+
 }
