@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -18,10 +19,15 @@ class User implements UserInterface
      */
     private $id;
     /**
-     * @ORM\Column(type="datetime", length=180, unique=true)
-     * @ORM\OneToMany(targetEntity="App\Entity\UserLog", mappedBy="username")
+     * One product has many features. This is the inverse side.
+     * @ORM\OneToMany(targetEntity="App\Entity\UserLog", mappedBy="product")
      */
-    private $loginTime;
+    private $features;
+    // ...
+
+    public function __construct() {
+        $this->features = new ArrayCollection();
+    }
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -55,11 +61,6 @@ class User implements UserInterface
      */
 
     private $enabled = false;
-
-    public function __construct()
-    {
-        $this->loginTime = new ArrayCollection();
-    }
 
     /**
      * A visual identifier that represents this user.
@@ -127,6 +128,78 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getRegisterDate(): ?\DateTimeInterface
+    {
+        return $this->registerDate;
+    }
+
+    public function setRegisterDate(\DateTimeInterface $registerDate): self
+    {
+        $this->registerDate = $registerDate;
+
+        return $this;
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserLog[]
+     */
+    public function getFeatures(): Collection
+    {
+        return $this->features;
+    }
+
+    public function addFeature(UserLog $feature): self
+    {
+        if (!$this->features->contains($feature)) {
+            $this->features[] = $feature;
+            $feature->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeature(UserLog $feature): self
+    {
+        if ($this->features->contains($feature)) {
+            $this->features->removeElement($feature);
+            // set the owning side to null (unless already changed)
+            if ($feature->getProduct() === $this) {
+                $feature->setProduct(null);
+            }
+        }
+
+        return $this;
     }
 
 }
