@@ -1,19 +1,12 @@
 <?php
-/**
- * Copyright (c) 2019.  Slepnoga.
- */
 
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
- * @HasLifecycleCallbacks
  */
 class User implements UserInterface
 {
@@ -32,13 +25,18 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = ['ROLE_USER'];
+    private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
 
     /**
@@ -51,11 +49,7 @@ class User implements UserInterface
     /**
      * @var string The user uuid
      * @ORM\Column(type="uuid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-
-    private $uuid;
 
     /**
      * @var \DateTime The user register time
@@ -71,14 +65,12 @@ class User implements UserInterface
 
     private $enabled = false;
 
-
     /**
-     * @return int|null
+     * @var string The user uuid
+     * @ORM\Column(type="uuid")
      */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+
+    private $uuid;
 
     /**
      * A visual identifier that represents this user.
@@ -87,7 +79,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string)$this->username;
+        return (string) $this->username;
     }
 
     public function setUsername(string $username): self
@@ -121,7 +113,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string)$this->password;
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -148,69 +140,51 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     */
-    public function setEmail(string $email): void
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getRegisterDate(): \DateTime
+    public function getRegisterDate(): ?\DateTimeInterface
     {
         return $this->registerDate;
     }
 
-    /**
-     * @param \DateTime $registerDate
-     */
-    public function setRegisterDate(\DateTime $registerDate): void
+    public function setRegisterDate(\DateTimeInterface $registerDate): self
     {
         $this->registerDate = $registerDate;
+
+        return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function isEnabled(): bool
+    public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @param bool $enabled
-     */
-    public function setEnabled(bool $enabled): void
+    public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getUuid()
     {
         return $this->uuid;
     }
 
-    /**
-     * @param string $uuid
-     */
-    public function setUuid(string $uuid): void
+    public function setUuid($uuid): self
     {
         $this->uuid = $uuid;
+
+        return $this;
     }
-
-
 }

@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginAuthenticator;
+use App\Utils\Helpers\LoggingUserhelper;
 use DateTime;
 use DateTimeZone;
 use Exception;
@@ -20,7 +21,7 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class RegistrationController extends AbstractController
 {
-
+use LoggingUserhelper;
     /**
      * @param Request                      $request
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -56,6 +57,8 @@ class RegistrationController extends AbstractController
 
             $user->setRegisterDate($time);
             $user->setEnabled(false);
+            // Auto generate dont'work https://github.com/doctrine/orm/issues/7215
+            $user->setUuid($this->generateUUID());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
