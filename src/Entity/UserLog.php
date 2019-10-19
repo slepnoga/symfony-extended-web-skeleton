@@ -5,9 +5,8 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Darsyn\IP\Doctrine\MultiType as IPadd;
-use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserLogRepository")
@@ -36,7 +35,7 @@ class UserLog
      * @var \DateTime
      * @ORM\Column(type="datetime", options={"default"="1800-01-01 00-00-00"})
      */
-    private  $loginTime;
+    private $loginTime;
 
     /**
      * @var
@@ -98,6 +97,4 @@ class UserLog
     {
         $this->ip = $ip;
     }
-
-
 }

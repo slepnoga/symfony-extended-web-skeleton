@@ -6,15 +6,12 @@
 
 namespace App\EventListener;
 
-use App\Utils\Helpers\DoctrineIpTypeHelper;
 use App\Entity\User;
+use App\Entity\UserLog;
+use App\Utils\Helpers\DoctrineIpTypeHelper;
 use App\Utils\Helpers\LoggingUserhelper;
-
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
-use App\Entity\UserLog;
-
-
 
 class LoginListener
 {
@@ -34,8 +31,8 @@ class LoginListener
 
         // Get the User entity.
         $userData = $event->getAuthenticationToken()->getUsername();
-       $ipstring = $event ->getRequest()->getClientIp();
-    dd($userData);
+        $ipstring = $event ->getRequest()->getClientIp();
+        dd($userData);
         // Update your field here.
         $userLog->setLoginTime(new \DateTime());
         $userLog ->setIpAddress($ipstring);

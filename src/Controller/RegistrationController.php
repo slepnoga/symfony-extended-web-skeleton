@@ -21,7 +21,7 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class RegistrationController extends AbstractController
 {
-use LoggingUserhelper;
+    use LoggingUserhelper;
     /**
      * @param Request                      $request
      * @param UserPasswordEncoderInterface $passwordEncoder

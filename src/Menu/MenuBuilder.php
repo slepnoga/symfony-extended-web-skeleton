@@ -37,7 +37,7 @@ class MenuBuilder
         $menu = $this->factory->createItem('sidebar');
 
         $menu->addChild('Logout', ['route' => 'app_logout']);
-        $menu->addChild('Register',['route' => 'app_register'] );
+        $menu->addChild('Register', ['route' => 'app_register']);
 
         // ... add more children
 

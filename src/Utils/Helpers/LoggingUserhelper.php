@@ -8,8 +8,6 @@ namespace App\Utils\Helpers;
 use Exception;
 use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 use Ramsey\Uuid\Uuid;
-use Darsyn\IP\Doctrine\MultiType as IP;
-use Darsyn\IP\Exception as DarsynException;
 
 trait LoggingUserhelper
 {
@@ -25,6 +23,4 @@ trait LoggingUserhelper
         }
         return $uuid4;
     }
-
-
 }
