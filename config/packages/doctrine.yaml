@@ -8,8 +8,12 @@ doctrine:
 
     mapping_types:
       enum: string
+      uuid_binary_ordered_time: binary
     types:
       ip: Darsyn\IP\Doctrine\MultiType
+      uuid_binary_ordered_time: Ramsey\Uuid\Doctrine\UuidBinaryOrderedTimeType
+
+
 
 
     # only needed for MySQL
