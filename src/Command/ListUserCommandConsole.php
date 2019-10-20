@@ -26,7 +26,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-
 class ListUserCommandConsole extends Command
 {
 
@@ -82,7 +81,7 @@ HELP
     /**
      * This method is executed after initialize(). It usually contains the logic
      * to execute to complete this command task.
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      */
     protected function execute(InputInterface $input, OutputInterface $output)

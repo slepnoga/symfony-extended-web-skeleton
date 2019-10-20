@@ -55,8 +55,8 @@ class DeleteUserCommandConsole extends Command
     /**
      * DeleteUserCommand constructor.
      * @param EntityManagerInterface $em
-     * @param MyValidator $validator
-     * @param UserRepository $users
+     * @param MyValidator            $validator
+     * @param UserRepository         $users
      */
     public function __construct(EntityManagerInterface $em, MyValidator $validator, UserRepository $users)
     {
@@ -90,7 +90,7 @@ HELP
     }
 
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      */
     protected function initialize(InputInterface $input, OutputInterface $output): void
@@ -102,7 +102,7 @@ HELP
     }
 
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      */
     protected function interact(InputInterface $input, OutputInterface $output)
@@ -129,7 +129,7 @@ HELP
     }
 
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      */
     protected function execute(InputInterface $input, OutputInterface $output): void

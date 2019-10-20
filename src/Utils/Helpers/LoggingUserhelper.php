@@ -21,6 +21,7 @@ trait LoggingUserhelper
             $uuid4 = Uuid::uuid4();
         } catch (UnsatisfiedDependencyException $e) {
         }
+
         return $uuid4;
     }
 }

@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-        {{ knp_menu_render('main') }}
-        {{ knp_menu_render('sidebar') }}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {{ knp_menu_render('main') }}
+    {{ knp_menu_render('sidebar') }}
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
 
 
-        {% endblock %}
-    </body>
+{% endblock %}
+</body>
 </html>

@@ -9,8 +9,6 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginAuthenticator;
 use App\Utils\Helpers\LoggingUserhelper;
-use DateTime;
-use DateTimeZone;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +20,7 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 class RegistrationController extends AbstractController
 {
     use LoggingUserhelper;
+
     /**
      * @param Request                      $request
      * @param UserPasswordEncoderInterface $passwordEncoder

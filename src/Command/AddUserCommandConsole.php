@@ -127,7 +127,7 @@ HELP;
     /**
      * This optional method is the first one executed for a command after configure()
      * and is useful to initialize properties based on the input arguments and options.
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      */
     protected function initialize(InputInterface $input, OutputInterface $output): void
@@ -147,14 +147,14 @@ HELP;
      * command, you probably should not implement this method because it requires
      * quite a lot of work. However, if the command is meant to be used by external
      * users, this method is a nice way to fall back and prevent errors.
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         if (null !== $input->getArgument('username') && null !== $input->getArgument(
-                'password'
-            ) && null !== $input->getArgument('email') && null !== $input->getArgument('full-name')) {
+            'password'
+        ) && null !== $input->getArgument('email') && null !== $input->getArgument('full-name')) {
             return;
         }
 
@@ -213,7 +213,7 @@ HELP;
     /**
      * This method is executed after interact() and initialize(). It usually
      * contains the logic to execute to complete this command task.
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      */
     protected function execute(InputInterface $input, OutputInterface $output): void

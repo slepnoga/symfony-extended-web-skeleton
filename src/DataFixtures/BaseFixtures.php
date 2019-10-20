@@ -11,7 +11,6 @@ use Faker\Generator;
  * Class BaseFixtures
  * @package App\DataFixtures
  */
-
 abstract class BaseFixtures extends Fixture
 {
     /**

@@ -31,11 +31,11 @@ class LoginListener
 
         // Get the User entity.
         $userData = $event->getAuthenticationToken()->getUsername();
-        $ipstring = $event ->getRequest()->getClientIp();
+        $ipstring = $event->getRequest()->getClientIp();
         dd($userData);
         // Update your field here.
         $userLog->setLoginTime(new \DateTime());
-        $userLog ->setIpAddress($ipstring);
+        $userLog->setIpAddress($ipstring);
         $userLog->setUuid($user->getUuid());
 
         // Persist the data to database.
