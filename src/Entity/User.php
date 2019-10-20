@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
@@ -30,18 +31,20 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     *
+     * @Assert\NotBlank()
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=180, nullable=true)
+     * @ORM\Column(type="string", length=180, nullable=true, options={"default": "DonDoyWithoutName"})
+     *
      */
     private $fullName;
 
 
     /**
      * @Assert\Email()
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=180)
      */
     private $email;
@@ -54,6 +57,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotCompromisedPassword()
+     *
      */
     private $password;
 
@@ -71,6 +76,12 @@ class User implements UserInterface
      * @var DateTime $created
      */
     private $userUpdatePassword;
+
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $enabled = false;
 
 
     /**
@@ -197,5 +208,18 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+        return  $this;
+    }
+
+   
 
 }
