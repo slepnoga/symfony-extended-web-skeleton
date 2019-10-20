@@ -39,5 +39,4 @@ trait LoggingUserhelper
 
         return $uuid1;
     }
-
 }

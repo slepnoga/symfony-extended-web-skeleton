@@ -5,13 +5,9 @@
 
 namespace App\DataFixtures;
 
-
-
 use App\Entity\UserLoginLog;
 use App\Utils\Helpers\LoggingUserhelper;
 use Doctrine\Common\Persistence\ObjectManager;
-use Ramsey\Uuid\Doctrine\UuidOrderedTimeGenerator;
-
 
 class UserLoginLogFixtures extends BaseFixtures
 {
@@ -29,15 +25,11 @@ class UserLoginLogFixtures extends BaseFixtures
             UserLoginLog::class,
             100,
             function (UserLoginLog $userLoggingLog, $count) {
-                
-
                 $userLoggingLog->setUserIp($this->faker->ipv4);
                 $userLoggingLog->setEuuid($this->generateUUID1());
-
             }
         );
 
         $manager->flush();
     }
-
 }

@@ -217,9 +217,7 @@ class User implements UserInterface
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
-        return  $this;
+
+        return $this;
     }
-
-   
-
 }

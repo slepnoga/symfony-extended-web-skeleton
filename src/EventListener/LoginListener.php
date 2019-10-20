@@ -27,7 +27,7 @@ class LoginListener
         $userLoginLog = new UserLoginLog();
         // Get the User entity.
         $user = $event->getAuthenticationToken()->getUser();
-        $ipstring = $event ->getRequest()->getClientIp();
+        $ipstring = $event->getRequest()->getClientIp();
         $userLoginLog->setEuuid($user->getId());
         $userLoginLog->setUserIp($ipstring);
 

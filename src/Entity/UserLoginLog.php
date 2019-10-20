@@ -7,8 +7,6 @@ use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
-use Darsyn\IP\Version\Multi as IP;
-
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserLoginLogRepository")
@@ -88,5 +86,4 @@ class UserLoginLog
 
         return $this;
     }
-
 }

@@ -28,7 +28,6 @@ class UserFixtures extends BaseFixtures
             User::class,
             100,
             function (User $user, $count) {
-
                 $user->setUsername($this->faker->unique(false)->userName);
                 $user->setFullname($this->faker->name);
                 $user->setEmail($this->faker->email);
@@ -51,5 +50,4 @@ class UserFixtures extends BaseFixtures
 
         $manager->flush();
     }
-
 }
