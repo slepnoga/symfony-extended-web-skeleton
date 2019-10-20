@@ -4,14 +4,17 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
 {
+    use TimestampableEntity;
 
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -25,11 +28,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     *
      */
     private $username;
 
     /**
-     * @Assert\Email()
      * @ORM\Column(type="string", length=180, nullable=true)
      */
     private $fullName;
@@ -38,7 +41,7 @@ class User implements UserInterface
 
     /**
      * @Assert\Email()
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180)
      */
     private $email;
 
@@ -48,8 +51,27 @@ class User implements UserInterface
      */
     private $roles = [];
 
-
+    /**
+     * @ORM\Column(type="string")
+     */
     private $password;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create",field={"username"})
+     * @var \DateTime $created
+     */
+    private $userCreated;
+
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update",field={"password"})
+     * @var \DateTime $created
+     */
+    private $userUpdatePassword;
+
+
 
     /**
      * @return UuidInterface
@@ -150,4 +172,5 @@ class User implements UserInterface
 
         return $this;
     }
+
 }
