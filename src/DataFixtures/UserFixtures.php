@@ -45,6 +45,7 @@ class UserFixtures extends BaseFixtures
                     $role = 'ROLE_USER';
                 }
                 $user->setRoles(array([$role]));
+                $user->setEnabled($value);
             }
         );
 
