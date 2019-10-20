@@ -39,5 +39,34 @@ class UserLoginLog
      */
    private $loginDate;
 
+   public function getId()
+   {
+       return $this->id;
+   }
+
+   public function getEuuid()
+   {
+       return $this->euuid;
+   }
+
+   public function setEuuid($euuid): self
+   {
+       $this->euuid = $euuid;
+
+       return $this;
+   }
+
+   public function getLoginDate(): ?\DateTimeInterface
+   {
+       return $this->loginDate;
+   }
+
+   public function setLoginDate(\DateTimeInterface $loginDate): self
+   {
+       $this->loginDate = $loginDate;
+
+       return $this;
+   }
+
 
 }
