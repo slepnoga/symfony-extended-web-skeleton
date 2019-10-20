@@ -50,8 +50,9 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            /*
+
             $user->setEmail($form->get('email')->getData());
+            /*
             $tz_utc = new DateTimeZone('UTC');
             $time = new DateTime();
             $time->setTimezone($tz_utc);
