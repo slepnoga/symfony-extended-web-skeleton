@@ -7,6 +7,7 @@ use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
+use Darsyn\IP\Version\Multi as IP;
 
 
 /**
@@ -40,6 +41,13 @@ class UserLoginLog
      */
     private $loginDate;
 
+    /**
+     * Todo migrate to from string to IP type
+     * @ORM\Column(type="string")
+     */
+    private $userIp;
+
+
     public function getId()
     {
         return $this->id;
@@ -69,5 +77,16 @@ class UserLoginLog
         return $this;
     }
 
+    public function getUserIp(): ?string
+    {
+        return $this->userIp;
+    }
+
+    public function setUserIp(string $userIp): self
+    {
+        $this->userIp = $userIp;
+
+        return $this;
+    }
 
 }

@@ -27,7 +27,9 @@ class LoginListener
         $userLoginLog = new UserLoginLog();
         // Get the User entity.
         $user = $event->getAuthenticationToken()->getUser();
+        $ipstring = $event ->getRequest()->getClientIp();
         $userLoginLog->setEuuid($user->getId());
+        $userLoginLog->setUserIp($ipstring);
 
         // Persist the data to database.
         $this->em->persist($userLoginLog);
