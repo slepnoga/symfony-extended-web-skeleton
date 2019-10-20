@@ -161,6 +161,31 @@ class User implements UserInterface
         return $this;
     }
 
+
+    public function getUserCreated(): ?\DateTimeInterface
+    {
+        return $this->userCreated;
+    }
+
+    public function setUserCreated(\DateTimeInterface $userCreated): self
+    {
+        $this->userCreated = $userCreated;
+
+        return $this;
+    }
+
+    public function getUserUpdatePassword(): ?\DateTimeInterface
+    {
+        return $this->userUpdatePassword;
+    }
+
+    public function setUserUpdatePassword(\DateTimeInterface $userUpdatePassword): self
+    {
+        $this->userUpdatePassword = $userUpdatePassword;
+
+        return $this;
+    }
+
     public function getFullName(): ?string
     {
         return $this->fullName;
