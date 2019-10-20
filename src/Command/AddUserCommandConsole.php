@@ -240,6 +240,7 @@ HELP;
         // See https://symfony.com/doc/current/book/security.html#security-encoding-password
         $encodedPassword = $this->passwordEncoder->encodePassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
+        $user->setEnabled(true);
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();

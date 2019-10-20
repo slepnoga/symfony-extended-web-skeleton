@@ -89,16 +89,14 @@ HELP
         $maxResults = $input->getOption('max-results');
         // Use ->findBy() instead of ->findAll() to allow result sorting and limiting
         $allUsers = $this->users->findBy([], ['id' => 'DESC'], $maxResults);
-
         // Doctrine query returns an array of objects and we need an array of plain arrays
+
         $usersAsPlainArrays = array_map(
             function (User $user) {
                 return [
                     $user->getId(),
-                    $user->getFullName(),
                     $user->getUsername(),
-                    $user->getEmail(),
-                    implode(', ', $user->getRoles()),
+                   $user->getEnabled(),
                 ];
             },
             $allUsers
@@ -112,7 +110,7 @@ HELP
         $bufferedOutput = new BufferedOutput();
         $io = new SymfonyStyle($input, $bufferedOutput);
         $io->table(
-            ['ID', 'Full Name', 'Username', 'Email', 'Roles'],
+            ['ID',  'Username', 'Enables'],
             $usersAsPlainArrays
         );
 

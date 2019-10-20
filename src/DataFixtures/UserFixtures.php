@@ -39,7 +39,7 @@ class UserFixtures extends BaseFixtures
 
                 $value = (bool)random_int(0, 1);
                 if ($value == 1) {
-                    $role = 'ROLE_ADMIN';
+                    $role = 'ROLE_ADMIN, ROLE_USER';
                 } else {
                     $role = 'ROLE_USER';
                 }

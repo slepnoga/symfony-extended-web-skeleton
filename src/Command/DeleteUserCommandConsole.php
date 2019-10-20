@@ -146,16 +146,16 @@ HELP
         // After an entity has been removed its in-memory state is the same
         // as before the removal, except for generated identifiers.
         // See https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/working-with-objects.html#removing-entities
-        $userId = $user->getId();
-
-        $this->entityManager->remove($user);
+        //$userId = $user->getId();
+        $user->setEnabled(false);
+        $this->entityManager->persist($user);
         $this->entityManager->flush();
 
         $this->io->success(
             sprintf(
-                'User "%s" (ID: %d, email: %s) was successfully deleted.',
+                'User "%s" (email: %s) was successfully disabled.',
                 $user->getUsername(),
-                $userId,
+
                 $user->getEmail()
             )
         );
