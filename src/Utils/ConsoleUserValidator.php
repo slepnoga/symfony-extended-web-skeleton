@@ -5,7 +5,7 @@ namespace App\Utils;
 
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 
-class ConsoleValidator
+class ConsoleUserValidator
 {
     public function validateUsername(?string $username): string
     {

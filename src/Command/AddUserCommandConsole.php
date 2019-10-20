@@ -14,7 +14,7 @@ namespace App\Command;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use App\Utils\ConsoleValidator as MyValidator;
+use App\Utils\ConsoleUserValidator as MyValidator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
@@ -45,7 +45,7 @@ use Symfony\Component\Stopwatch\Stopwatch;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class AddUserCommand extends Command
+class AddUserCommandConsole extends Command
 {
     // to make your command lazily loaded, configure the $defaultName static property,
     // so it will be instantiated only when the command is actually called.

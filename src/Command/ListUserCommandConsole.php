@@ -26,7 +26,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class ListUsersCommandConsole extends Command
+
+class ListUserCommandConsole extends Command
 {
 
     // a good practice is to use the 'app:' prefix to group all your custom application commands

@@ -13,7 +13,7 @@ namespace App\Command;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use App\Utils\ConsoleValidator as MyValidator;
+use App\Utils\ConsoleUserValidator as MyValidator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
@@ -39,7 +39,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class DeleteUserCommand extends Command
+class DeleteUserCommandConsole extends Command
 {
     protected static $defaultName = 'app:delete-user';
 
