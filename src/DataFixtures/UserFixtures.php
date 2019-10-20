@@ -33,8 +33,9 @@ class UserFixtures extends BaseFixtures
                 $user->setFullname($this->faker->name);
                 $user->setEmail($this->faker->email);
                 $plainPassword = $this->faker->password;
-                $user->setPassword($this->passwordEncoder
-                    ->encodePassword($user, $plainPassword)
+                $user->setPassword(
+                    $this->passwordEncoder
+                        ->encodePassword($user, $plainPassword)
                 );
 
                 $value = (bool)random_int(0, 1);

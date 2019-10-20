@@ -6,10 +6,7 @@
 
 namespace App\EventListener;
 
-use App\Entity\User;
-use App\Entity\UserLog;
 use App\Entity\UserLoginLog;
-use App\Utils\Helpers\DoctrineIpTypeHelper;
 use App\Utils\Helpers\LoggingUserhelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -28,16 +25,9 @@ class LoginListener
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
         $userLoginLog = new UserLoginLog();
-        //$user = new User;
-
         // Get the User entity.
         $user = $event->getAuthenticationToken()->getUser();
-        $euuid=$user->getId();
-
-        // Update your field here.
-        $userLoginLog->setLoginDate(new \DateTime());
-        //$userLog->setIpAddress($ipstring);
-      $userLoginLog->setEuuid($euuid);
+        $userLoginLog->setEuuid($user->getId());
 
         // Persist the data to database.
         $this->em->persist($userLoginLog);

@@ -153,8 +153,8 @@ HELP;
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         if (null !== $input->getArgument('username') && null !== $input->getArgument(
-            'password'
-        ) && null !== $input->getArgument('email') && null !== $input->getArgument('full-name')) {
+                'password'
+            ) && null !== $input->getArgument('email') && null !== $input->getArgument('full-name')) {
             return;
         }
 

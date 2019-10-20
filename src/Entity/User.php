@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\UuidInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -17,7 +19,7 @@ class User implements UserInterface
     use TimestampableEntity;
 
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid_binary_ordered_time", unique=true)
@@ -36,7 +38,6 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=180, nullable=true)
      */
     private $fullName;
-
 
 
     /**
@@ -59,7 +60,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create",field={"username"})
-     * @var \DateTime $created
+     * @var DateTime $created
      */
     private $userCreated;
 
@@ -67,10 +68,9 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update",field={"password"})
-     * @var \DateTime $created
+     * @var DateTime $created
      */
     private $userUpdatePassword;
-
 
 
     /**
@@ -162,24 +162,24 @@ class User implements UserInterface
     }
 
 
-    public function getUserCreated(): ?\DateTimeInterface
+    public function getUserCreated(): ?DateTimeInterface
     {
         return $this->userCreated;
     }
 
-    public function setUserCreated(\DateTimeInterface $userCreated): self
+    public function setUserCreated(DateTimeInterface $userCreated): self
     {
         $this->userCreated = $userCreated;
 
         return $this;
     }
 
-    public function getUserUpdatePassword(): ?\DateTimeInterface
+    public function getUserUpdatePassword(): ?DateTimeInterface
     {
         return $this->userUpdatePassword;
     }
 
-    public function setUserUpdatePassword(\DateTimeInterface $userUpdatePassword): self
+    public function setUserUpdatePassword(DateTimeInterface $userUpdatePassword): self
     {
         $this->userUpdatePassword = $userUpdatePassword;
 
