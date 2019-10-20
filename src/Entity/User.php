@@ -30,6 +30,13 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @Assert\Email()
+     * @ORM\Column(type="string", length=180, nullable=true)
+     */
+    private $fullName;
+
+
+    /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -121,6 +128,18 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->fullName;
+    }
+
+    public function setFullName(?string $fullName): self
+    {
+        $this->fullName = $fullName;
 
         return $this;
     }
