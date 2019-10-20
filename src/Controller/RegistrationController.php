@@ -50,6 +50,7 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            /*
             $user->setEmail($form->get('email')->getData());
             $tz_utc = new DateTimeZone('UTC');
             $time = new DateTime();
@@ -59,6 +60,7 @@ class RegistrationController extends AbstractController
             $user->setEnabled(false);
             // Auto generate dont'work https://github.com/doctrine/orm/issues/7215
             $user->setUuid($this->generateUUID());
+            */
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -67,7 +69,7 @@ class RegistrationController extends AbstractController
 
             // Due admin review users, disable automatic login
             /* and flash to user reg's sucefull
-             *
+             */
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
@@ -75,7 +77,7 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
-            */
+
             $this->addFlash('succes', 'Registracion succes, please wait');
         }
 
