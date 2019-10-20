@@ -75,6 +75,10 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
         }
 
+        if ($user->getEnabled() === false) {
+            throw new CustomUserMessageAuthenticationException('Username  disabled by admin.');
+        }
+
         return $user;
     }
 
@@ -88,10 +92,9 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-
-        // For example :
-        return new RedirectResponse($this->urlGenerator->generate('front_page'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        else {
+            return new RedirectResponse($this->urlGenerator->generate('front_page'));
+        }
     }
 
     protected function getLoginUrl()
