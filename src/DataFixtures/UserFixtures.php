@@ -5,33 +5,38 @@ namespace App\DataFixtures;
 
 use App\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-/**
- * @property UserPasswordEncoder encoder
- */
 class UserFixtures extends BaseFixtures
 {
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     /**
      * @param ObjectManager $manager
      * @return mixed|void
      */
     public function loadData(ObjectManager $manager)
     {
+
         // fake User
         $this->createMany(
-        /**
-         * @param User $user
-         * @param      $count
-         */
             User::class,
             100,
             function (User $user, $count) {
+
                 $user->setUsername($this->faker->unique(false)->userName);
                 $user->setFullname($this->faker->name);
                 $user->setEmail($this->faker->email);
                 $plainPassword = $this->faker->password;
-                $user->setPassword(md5($plainPassword));
+                $user->setPassword($this->passwordEncoder
+                    ->encodePassword($user, $plainPassword)
+                );
+
                 $value = (bool)random_int(0, 1);
                 if ($value == 1) {
                     $role = 'ROLE_ADMIN';
@@ -44,4 +49,5 @@ class UserFixtures extends BaseFixtures
 
         $manager->flush();
     }
+
 }

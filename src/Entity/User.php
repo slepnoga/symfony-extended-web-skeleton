@@ -25,15 +25,17 @@ class User implements UserInterface
 
     /**
      * @Assert\Email()
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
-    private $email;
-
-    /**
-     * @Assert\Email()
      * @ORM\Column(type="string", length=180, nullable=true)
      */
     private $fullName;
+
+
+
+    /**
+     * @Assert\Email()
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $email;
 
 
     /**
