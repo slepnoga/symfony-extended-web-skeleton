@@ -96,7 +96,7 @@ HELP
                 return [
                     $user->getId(),
                     $user->getUsername(),
-                   $user->getEnabled(),
+                    $user->getEnabled(),
                 ];
             },
             $allUsers
@@ -110,7 +110,7 @@ HELP
         $bufferedOutput = new BufferedOutput();
         $io = new SymfonyStyle($input, $bufferedOutput);
         $io->table(
-            ['ID',  'Username', 'Enables'],
+            ['ID', 'Username', 'Enables'],
             $usersAsPlainArrays
         );
 

@@ -155,7 +155,6 @@ HELP
             sprintf(
                 'User "%s" (email: %s) was successfully disabled.',
                 $user->getUsername(),
-
                 $user->getEmail()
             )
         );

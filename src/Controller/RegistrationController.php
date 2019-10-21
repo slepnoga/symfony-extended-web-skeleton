@@ -49,27 +49,10 @@ class RegistrationController extends AbstractController
                 )
             );
 
-
             $user->setEmail($form->get('email')->getData());
-            /*
-            $tz_utc = new DateTimeZone('UTC');
-            $time = new DateTime();
-            $time->setTimezone($tz_utc);
-
-            $user->setRegisterDate($time);
-            $user->setEnabled(false);
-            // Auto generate dont'work https://github.com/doctrine/orm/issues/7215
-            $user->setUuid($this->generateUUID());
-            */
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-
-            // do anything else you need here, like send an email
-
-            // Due admin review users, disable automatic login
-            /* and flash to user reg's sucefull
-             */
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,

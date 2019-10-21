@@ -25,14 +25,13 @@ trait LoggingUserhelper
         return $uuid4;
     }
 
-
     /**
      * @throws Exception
      */
     public function generateUUID1()
     {
         try {
-            // Generate a version 4 (random) UUID object
+            // Generate a version 1 (random) UUID object
             $uuid1 = Uuid::uuid1();
         } catch (UnsatisfiedDependencyException $e) {
         }
